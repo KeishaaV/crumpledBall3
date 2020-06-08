@@ -1,5 +1,4 @@
-var helicopterIMG, helicopterSprite, packageSprite,packageIMG;
-var packageBody,ground
+var ballImg, binImg; 
 const Engine = Matter.Engine;
 const World = Matter.World;
 const Bodies = Matter.Bodies;
@@ -7,7 +6,8 @@ const Body = Matter.Body;
 const Render = Matter.Render;
 function preload()
 {
-	
+	ballImg= loadImage("sprites/paper.png");
+	binImg= loadImage("sprties/dustbingreen.png");
 }
 
 function setup() {
@@ -26,6 +26,7 @@ function setup() {
 	 World.add(world, ground);
 	 
 	 ball= new Ball(100, 600, 30, 30); 
+	 ball.addImage(ballImg);
 	 World.add(world, ball);
 
 	Engine.run(engine);
@@ -36,9 +37,8 @@ function setup() {
 function draw() {
   rectMode(CENTER);
   background(0);
-  rect(700, 650, 100, 10);
-  rect(650, 600, 10, 100);
-  rect(750, 600, 10, 100);
+
+  image(binImg, 600, 650, 100, 100);
 
   Engine.update(engine);
   
@@ -47,6 +47,12 @@ function draw() {
   
   drawSprites();
  
+}
+
+function keyPresses(){
+	if (keyCode===32){
+		ball.velocityY= -10;
+	}
 }
 
 
