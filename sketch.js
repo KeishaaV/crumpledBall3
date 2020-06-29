@@ -4,6 +4,9 @@ const World = Matter.World;
 const Bodies = Matter.Bodies;
 const Body = Matter.Body;
 const Render = Matter.Render;
+const Constraint = Matter.Constraint;
+var sling;
+
 function preload()
 {
 	ballImg= loadImage("sprites/paper.png");
@@ -29,6 +32,8 @@ function setup() {
 	 ball.addImage(ballImg);
 	 World.add(world, ball);
 
+	 sling = new Slingshot(ball.body,{x:200,y:100});
+
 	Engine.run(engine);
   
 }
@@ -44,6 +49,7 @@ function draw() {
   
   ground.display();
   ball.display();
+  sling.display();
   
   drawSprites();
  
